@@ -10,10 +10,15 @@ import java.util.Optional;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
-    Optional<Account> findByNumeroCuenta(String numeroCuenta);
-    List<Account> findByClienteId(Long clienteId);
+    Optional<Account> findByIban(String iban);
+    List<Account> findByClient_Id(Long clientId);
 
     // Carga cuentas con sus movimientos en una sola consulta (evita N+1) 
-    @Query("SELECT c FROM Cuenta c LEFT JOIN FETCH c.movimientos WHERE c.cliente.id= :clienteId")
+    @Query("""
+       SELECT a
+       FROM Account a
+       LEFT JOIN FETCH a.movements
+       WHERE a.client.id = :clientId
+       """)
     List<Account> findByClienteIdWithMovimientos(Long clienteId);
-} 
+}
