@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CaPr3Application {
+public class NovaBankApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CaPr3Application.class, args);
+		SpringApplication.run(NovaBankApplication.class, args);
 	}
 
 }
