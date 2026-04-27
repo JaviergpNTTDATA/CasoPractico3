@@ -1,4 +1,4 @@
 package com.casopractico3.CaPr3.model;
 
-public class Cuenta {
+public class Movement {
 }

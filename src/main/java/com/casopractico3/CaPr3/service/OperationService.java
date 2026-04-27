@@ -1,4 +1,4 @@
 package com.casopractico3.CaPr3.service;
 
-public class OperacionService {
+public class OperationService {
 }
