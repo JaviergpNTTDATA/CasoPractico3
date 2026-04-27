@@ -1,6 +1,7 @@
 package com.casopractico3.CaPr3.service;
 
 import com.casopractico3.CaPr3.dto.ClientDTO;
+import com.casopractico3.CaPr3.dto.CreateClient;
 import com.casopractico3.CaPr3.exception.ClientNotFoundException;
 import com.casopractico3.CaPr3.mapper.ClientMapper;
 import com.casopractico3.CaPr3.model.Client;
@@ -35,8 +36,14 @@ public class ClientService {
         return ClientMapper.toDTO(client);
     }
 
+    @Transactional(readOnly = true)
+    public ClientDTO getClientDNI(String dni) {
+        Client client = clientRepository.findByDni(dni)
+                .orElseThrow(() -> new ClientNotFoundException("Client not found: " + dni));
+        return ClientMapper.toDTO(client);
+    }
 
-    public ClientDTO createClient(ClientDTO dto) {
+    public ClientDTO createClient(CreateClient dto) {
         if (clientRepository.existsByDni(dto.getDni()))
             throw new IllegalArgumentException("A client with that DNI already exists: " +
                     dto.getDni());
@@ -45,7 +52,18 @@ public class ClientService {
                     dto.getEmail());
         if (clientRepository.existsByPhone(dto.getPhone()))
             throw new IllegalArgumentException("A client with that telephone number already exists: " + dto.getPhone());
-                    Client save = clientRepository.save(ClientMapper.toEntity(dto));
+        if (dto.getFirstName().isBlank())
+            throw new IllegalArgumentException("First name is needed");
+        if (dto.getLastName().isBlank())
+            throw new IllegalArgumentException("Last name is needed");
+        if (dto.getDni().isBlank())
+            throw new IllegalArgumentException("DNI is needed");
+        if (dto.getEmail().isBlank())
+            throw new IllegalArgumentException("Email is needed");
+        if (dto.getPhone().isBlank())
+            throw new IllegalArgumentException("Phone is needed");
+
+        Client save = clientRepository.save(ClientMapper.toEntity(dto));
         return ClientMapper.toDTO(save);
     }
 }
