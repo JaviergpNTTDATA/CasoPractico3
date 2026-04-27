@@ -39,6 +39,11 @@ public class Account {
     @Column(name = "createdAt", updatable = false)
     private LocalDateTime createdAt;
 
+    public Account(Client client) {
+        this.client = client;
+
+    }
+
 
     @PrePersist
     public void prePersist() {

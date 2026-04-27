@@ -1,6 +1,5 @@
 package com.casopractico3.CaPr3.controller;
 
-
 import com.casopractico3.CaPr3.dto.ClientDTO;
 import com.casopractico3.CaPr3.dto.CreateClient;
 import com.casopractico3.CaPr3.service.ClientService;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "Clients", description = "Operaciones relacionadas con clientes")
+@Tag(name = "Clients", description = "Operations related to clients")
 @RestController
 @RequestMapping("/clients")
 @RequiredArgsConstructor
@@ -27,37 +26,35 @@ public class ClientController {
     }
 
     @Operation(
-            summary = "Buscar cliente por id",
-            description = "Devuelve un cliente según el id proporcionado"
+            summary = "Search client by ID",
+            description = "Returns a client based on the provided ID"
     )
-    @ApiResponse(responseCode = "200", description = "Cliente encontrado")
-    @ApiResponse(responseCode = "404", description = "Cliente no encontrado")
-    @GetMapping("/obtenerPorId/{id}")
+    @ApiResponse(responseCode = "200", description = "Client found")
+    @ApiResponse(responseCode = "404", description = "Client not found")
+    @GetMapping("/getById/{id}")
     public ClientDTO searchById(@PathVariable Long id) {
         return service.getsClient(id);
     }
 
-
     @Operation(
-            summary = "Buscar cliente por DNI",
-            description = "Devuelve un cliente según el dni proporcionado"
+            summary = "Search client by DNI",
+            description = "Returns a client based on the provided DNI"
     )
-    @ApiResponse(responseCode = "200", description = "Cliente encontrado")
-    @ApiResponse(responseCode = "404", description = "Cliente no encontrado")
-    @GetMapping("/obtenerPorDNI/{dni}")
+    @ApiResponse(responseCode = "200", description = "Client found")
+    @ApiResponse(responseCode = "404", description = "Client not found")
+    @GetMapping("/getByDni/{dni}")
     public ClientDTO searchByDNI(@PathVariable String dni) {
         return service.getClientDNI(dni.toUpperCase());
     }
 
     @Operation(
-            summary = "Listar todos los clientes",
-            description = "Devuelve todos los clientes"
+            summary = "List all clients",
+            description = "Returns all registered clients"
     )
-    @ApiResponse(responseCode = "200", description = "Clientes encontrado")
-    @ApiResponse(responseCode = "404", description = "Clientes no encontrado")
-    @GetMapping("/obternerTodos")
+    @ApiResponse(responseCode = "200", description = "Clients retrieved successfully")
+    @ApiResponse(responseCode = "404", description = "No clients found")
+    @GetMapping("/getAll")
     public List<ClientDTO> getAll() {
         return service.listClients();
     }
-
 }
