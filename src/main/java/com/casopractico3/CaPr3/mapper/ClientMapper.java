@@ -1,8 +1,8 @@
 package com.casopractico3.CaPr3.mapper;
 
 import com.casopractico3.CaPr3.dto.ClientDTO;
+import com.casopractico3.CaPr3.dto.CreateClient;
 import com.casopractico3.CaPr3.model.Client;
-import lombok.Builder;
 
 public class ClientMapper {
     public static ClientDTO toDTO(Client client) {
@@ -17,7 +17,7 @@ public class ClientMapper {
         );
     }
 
-    public static Client toEntity(ClientDTO dto) {
+    public static Client toEntity(CreateClient dto) {
         return new Client(
                 dto.getFirstName(),
                 dto.getLastName(),
