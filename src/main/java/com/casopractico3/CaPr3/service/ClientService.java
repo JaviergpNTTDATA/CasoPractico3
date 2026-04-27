@@ -43,8 +43,8 @@ public class ClientService {
         if (clientRepository.existsByEmail(dto.getEmail()))
             throw new IllegalArgumentException("A client with that email already exists: " +
                     dto.getEmail());
-        if (clientRepository.existsByTelefono(dto.getTelefono()))
-            throw new IllegalArgumentException("A client with that telephone number already exists: " + dto.getTelefono());
+        if (clientRepository.existsByTelefono(dto.getPhone()))
+            throw new IllegalArgumentException("A client with that telephone number already exists: " + dto.getPhone());
                     Client save = clientRepository.save(ClientMapper.toEntity(dto));
         return ClientMapper.toDTO(save);
     }
