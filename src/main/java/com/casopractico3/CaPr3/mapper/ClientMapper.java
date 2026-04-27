@@ -13,7 +13,6 @@ public class ClientMapper {
                 client.getDni(),
                 client.getEmail(),
                 client.getPhone(),
-                client.getCreatedAt(),
                 client.getAccounts().size()
         );
     }

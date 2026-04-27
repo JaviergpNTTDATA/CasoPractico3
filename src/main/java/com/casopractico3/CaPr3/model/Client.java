@@ -1,38 +1,49 @@
 package com.casopractico3.CaPr3.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Builder
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "clients")
 public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Firstname is needed")
+    @Column(nullable = false)
     private String firstName;
 
+    @NotBlank(message = "Lastname is needed")
+    @Column(nullable = false)
     private String lastName;
 
+    @NotBlank(message = "DNI is needed")
     @Column(unique = true, nullable = false)
     private String dni;
 
-    @Column(unique = true)
+    @NotBlank(message = "Email is needed")
+    @Column(unique = true, nullable = false)
     private String email;
 
+    @NotBlank(message = "Phone is needed")
     private String phone;
 
-    private LocalDateTime createdAt;
-
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Account> accounts = new ArrayList<>();
+
 
     public Client(String firstName, String lastName, String dni, String phone, String email) {
         this.firstName = firstName;
@@ -42,8 +53,4 @@ public class Client {
         this.email = email;
     }
 
-    @PrePersist
-    public void prePersist() {
-        this.createdAt = LocalDateTime.now();
-    }
 }
