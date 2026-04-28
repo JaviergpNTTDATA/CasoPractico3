@@ -47,7 +47,7 @@ public class OperationService {
 
         Movement saved = movementRepository.save(movement);
 
-        return MovementMapper.toDTO(saved);
+        return MovementMapper.toDto(saved);
     }
 
     public MovementDTO withdraw(String iban, BigDecimal amount) {
@@ -70,7 +70,7 @@ public class OperationService {
 
         Movement saved = movementRepository.save(movement);
 
-        return MovementMapper.toDTO(saved);
+        return MovementMapper.toDto(saved);
     }
     @Transactional
     public List<MovementDTO> transfer(String sourceIban, String targetIban, BigDecimal amount) {
@@ -114,8 +114,8 @@ public class OperationService {
         movementRepository.save(credit);
 
         return List.of(
-                MovementMapper.toDTO(debit),
-                MovementMapper.toDTO(credit)
+                MovementMapper.toDto(debit),
+                MovementMapper.toDto(credit)
         );
     }
 
