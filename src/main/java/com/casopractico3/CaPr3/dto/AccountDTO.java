@@ -17,4 +17,8 @@ public class AccountDTO {
     private BigDecimal balance;
     private LocalDateTime createdAt;
     private Long clientId;
+
+    public AccountDTO() {
+
+    }
 }
