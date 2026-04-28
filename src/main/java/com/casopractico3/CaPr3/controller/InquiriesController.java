@@ -1,7 +1,6 @@
 package com.casopractico3.CaPr3.controller;
 
 import com.casopractico3.CaPr3.dto.AccountBalanceDTO;
-import com.casopractico3.CaPr3.dto.AccountDTO;
 import com.casopractico3.CaPr3.dto.MovementDTO;
 import com.casopractico3.CaPr3.service.InquiriesService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -10,7 +9,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Tag(name = "Inquiries", description = "Operations related to inquiries")

@@ -2,7 +2,6 @@ package com.casopractico3.CaPr3.repository;
 
 import com.casopractico3.CaPr3.model.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,11 +11,4 @@ import java.util.Optional;
 public interface AccountRepository extends JpaRepository<Account, Long> {
     Optional<Account> findByIban(String iban);
     List<Account> findByClient_Id(Long clientId);
-    @Query("""
-       SELECT a
-       FROM Account a
-       LEFT JOIN FETCH a.movements
-       WHERE a.client.id = :clientId
-       """)
-    List<Account> findByClienteIdWithMovimientos(Long clienteId);
 }
