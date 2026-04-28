@@ -2,6 +2,7 @@ package com.casopractico3.CaPr3.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -24,6 +25,16 @@ public class GlobalExceptionHandler extends RuntimeException{
     @ExceptionHandler(MovementNotFoundException.class)
     public ResponseEntity<Map<String, Object>> handleMovementNotFound(MovementNotFoundException ex) {
         return buildResponse("MOVEMENT_NOT_FOUND", ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    //User not found 404
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<Map<String, Object>> handleBadCredentials(BadCredentialsException ex) {
+        return buildResponse(
+                "INVALID_CREDENTIALS",
+                "User or password incorrect",
+                HttpStatus.UNAUTHORIZED
+        );
     }
 
     //Account not found 404
