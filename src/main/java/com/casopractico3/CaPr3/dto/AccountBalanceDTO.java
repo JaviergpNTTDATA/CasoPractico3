@@ -1,7 +1,6 @@
 package com.casopractico3.CaPr3.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,13 +10,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @AllArgsConstructor
-public class MovementDTO {
+public class AccountBalanceDTO {
+
     private String iban;
-    private String type;
-    private BigDecimal amount;
-    private LocalDateTime createdAt;
-
-    public MovementDTO() {
-
-    }
+    private BigDecimal balance;
 }
