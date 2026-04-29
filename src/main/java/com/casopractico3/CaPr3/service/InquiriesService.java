@@ -1,7 +1,6 @@
 package com.casopractico3.CaPr3.service;
 
 import com.casopractico3.CaPr3.dto.AccountBalanceDTO;
-import com.casopractico3.CaPr3.dto.AccountDTO;
 import com.casopractico3.CaPr3.dto.MovementDTO;
 import com.casopractico3.CaPr3.exception.AccountNotFoundException;
 import com.casopractico3.CaPr3.exception.MovementNotFoundException;

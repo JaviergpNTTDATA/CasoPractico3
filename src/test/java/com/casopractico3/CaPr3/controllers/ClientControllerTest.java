@@ -1,8 +1,9 @@
 package com.casopractico3.CaPr3.controllers;
 
-import com.casopractico3.CaPr3.controller.AccountController;
+import com.casopractico3.CaPr3.controller.ClientController;
+import com.casopractico3.CaPr3.exception.ClientNotFoundException;
 import com.casopractico3.CaPr3.security.JwtFilter;
-import com.casopractico3.CaPr3.service.AccountService;
+import com.casopractico3.CaPr3.service.ClientService;
 import com.casopractico3.CaPr3.service.JwtService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,22 +12,19 @@ import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.List;
-
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
-@WebMvcTest(AccountController.class)
+@WebMvcTest(ClientController.class)
 @AutoConfigureMockMvc(addFilters = false)
-class AccountControllerTest {
+class ClientControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockitoBean
-    private AccountService accountService;
+    private ClientService clientService;
 
     @MockitoBean
     private JwtService jwtService;
@@ -35,22 +33,19 @@ class AccountControllerTest {
     private JwtFilter jwtFilter;
 
     @Test
-    void shouldReturnAccountsByClient() throws Exception {
-
-        when(accountService.listClientAccounts(1L))
-                .thenReturn(List.of());
-
-        mockMvc.perform(get("/accounts/client/1"))
+    void shouldReturnClientById() throws Exception {
+        // Ajusta la URL si tu ClientController usa otro path
+        mockMvc.perform(get("/clients/getById/1"))
                 .andExpect(status().isOk());
     }
 
     @Test
-    void shouldReturn404WhenAccountNotFound() throws Exception {
+    void shouldReturn404WhenClientNotFound() throws Exception {
 
-        when(accountService.getAccountByIban("ES404"))
-                .thenThrow(new RuntimeException());
+        when(clientService.getsClient(99L))
+                .thenThrow(new ClientNotFoundException("Client not found"));
 
-        mockMvc.perform(get("/accounts/ES404"))
+        mockMvc.perform(get("/clients/99"))
                 .andExpect(status().isNotFound());
     }
 }

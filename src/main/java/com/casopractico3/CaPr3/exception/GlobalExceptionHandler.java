@@ -44,6 +44,7 @@ public class GlobalExceptionHandler extends RuntimeException{
     }
 
     //insufficient balance 422
+    @SuppressWarnings("deprecation")
     @ExceptionHandler(InsufficientBalanceException.class)
     public ResponseEntity<Map<String, Object>> handleSaldoInsuficiente(InsufficientBalanceException ex) {
         return buildResponse("INSUFFICIENT_BALANCE", ex.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
