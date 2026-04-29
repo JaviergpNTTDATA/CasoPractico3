@@ -3,9 +3,9 @@ spring:
     name: CaPr3
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/novabank
-    username: banco_user
-    password: 1234
+    url:
+    username:
+    password:
     driver-class-name: org.postgresql.Driver
 
   jpa:

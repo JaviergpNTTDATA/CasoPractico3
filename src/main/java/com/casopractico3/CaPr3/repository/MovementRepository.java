@@ -12,10 +12,7 @@ public interface MovementRepository extends JpaRepository<Movement, Long> {
 
     List<Movement> findByAccount_ibanOrderByCreatedAtDesc(String iban);
 
-    List<Movement> findByAccount_ibanAndCreatedAtBetweenOrderByCreatedAtDesc(
-            String iban,
-            LocalDateTime start,
-            LocalDateTime end
+    List<Movement> findByAccount_ibanAndCreatedAtBetweenOrderByCreatedAtDesc(String iban, LocalDateTime start, LocalDateTime end
     );
 
 }

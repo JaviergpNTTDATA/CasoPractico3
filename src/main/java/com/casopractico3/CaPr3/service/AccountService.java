@@ -23,9 +23,7 @@ public class AccountService {
     private final ClientRepository clientRepository;
     private final IbanGenerator ibanGenerator;
 
-    public AccountService(AccountRepository accountRepository,
-                          ClientRepository clientRepository,
-                          IbanGenerator ibanGenerator) {
+    public AccountService(AccountRepository accountRepository, ClientRepository clientRepository, IbanGenerator ibanGenerator) {
         this.accountRepository = accountRepository;
         this.clientRepository = clientRepository;
         this.ibanGenerator = ibanGenerator;
