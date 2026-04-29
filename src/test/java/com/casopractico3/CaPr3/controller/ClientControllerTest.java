@@ -1,5 +1,6 @@
 package com.casopractico3.CaPr3.controller;
 
+import com.casopractico3.CaPr3.DisableSecurityConfig;
 import com.casopractico3.CaPr3.dto.ClientDTO;
 import com.casopractico3.CaPr3.dto.CreateClient;
 import com.casopractico3.CaPr3.exception.ClientNotFoundException;
@@ -9,7 +10,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
@@ -24,9 +27,10 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@Disabled("Diaasables until i can fix the ApplicationContext")
-@WebMvcTest(ClientController.class)
+@WebMvcTest(controllers = ClientController.class)
+@Disabled
 class ClientControllerTest {
+
 
     @Autowired
     private MockMvc mockMvc;

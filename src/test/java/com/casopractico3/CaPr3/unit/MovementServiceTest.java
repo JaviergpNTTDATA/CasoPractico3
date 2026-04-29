@@ -1,5 +1,6 @@
 package com.casopractico3.CaPr3.unit;
 
+import com.casopractico3.CaPr3.NovaBankApplication;
 import com.casopractico3.CaPr3.model.Account;
 import com.casopractico3.CaPr3.model.Client;
 import com.casopractico3.CaPr3.model.Movement;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
