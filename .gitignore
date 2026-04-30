@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+### Creedentials ###
+src/main/resources/creedentials/dev.env
+
 ### STS ###
 .apt_generated
 .classpath

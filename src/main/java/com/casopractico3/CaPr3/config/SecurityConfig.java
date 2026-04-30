@@ -3,6 +3,7 @@ package com.casopractico3.CaPr3.config;
 import com.casopractico3.CaPr3.model.User;
 import com.casopractico3.CaPr3.repository.UserRepository;
 import com.casopractico3.CaPr3.security.JwtFilter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,6 +20,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private final JwtFilter jwtFilter;
+    @Value("${admin.user}")
+    private String user;
+    @Value("${admin.password}")
+    private String password;
 
     public SecurityConfig(JwtFilter jwtFilter) {
         this.jwtFilter = jwtFilter;
@@ -58,11 +63,11 @@ public class SecurityConfig {
     @Bean
     CommandLineRunner init(UserRepository repo, PasswordEncoder encoder) {
         return args -> {
-            if (repo.findByUsername("admin").isEmpty()) {
+            if (repo.findByUsername(user).isEmpty()) {
                 repo.save(new User(
                         null,
-                        "admin",
-                        encoder.encode("1234"),
+                        user,
+                        encoder.encode(password),
                         "ADMIN"
                 ));
             }
